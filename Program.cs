@@ -1,14 +1,18 @@
 ﻿internal class Program
 {
-    static List<int> numberList = new List<int>();
-    static string[,] bingoCard = new string[3, 9];
+    static List<int> numberList = new List<int>();// List to keep track of generated numbers
+    static string[,] bingoCard = new string[3, 9];// 3 rows and 9 columns for the Bingo card
     private static void Main(string[] args)
     {
+        // This program generates a Bingo card with 3 rows and 9 columns, filling each column with random numbers from 1 to 90.
         InitialiseBingoCard();
         BuildCard();
         PrintCard();
+         
+        
     }
 
+    // This method builds the Bingo card by filling it with random numbers.
     private static void BuildCard()
     {
         for (int i = 0; i < 3; i++)
@@ -29,6 +33,8 @@
                
             }
         }
+        
+
         SortCard(); // Sort the card after filling it
     }
     private static void SortCard()
@@ -62,6 +68,7 @@
         }
     }
 
+    // This method prints the Bingo card to the console.
     private static void PrintCard()
     {
         for (int i = 0; i < 3; i++)
@@ -80,19 +87,23 @@
             Console.WriteLine();
         }
     }
+
+    // This method generates a random number between 1 and 90 that is not already in the number list.
     private static int GenerateRandomNumber()
     {
         Random rnd = new Random();
         while (true)
         {
             int number = rnd.Next(1, 91); // Generate a number between 1 and 90
-            if (!numberList.Contains(number))
+            if (!numberList.Contains(number))// Check if the number is already in the list
             {
-                numberList.Add(number);
+                numberList.Add(number);// Add the number to the list
                 return number;
             }
         }
     }
+
+    // This method initializes the bingo card with empty strings.
     private static void InitialiseBingoCard()
     {
         // Initialize the bingo card with empty strings
